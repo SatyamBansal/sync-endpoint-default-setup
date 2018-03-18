@@ -2,22 +2,18 @@
 
 Same as [sync-endpoint-containers](https://github.com/opendatakit/sync-endpoint-containers)
 
-## Build
-
-1. Follow instructions on [sync-endpoint-containers](https://github.com/opendatakit/sync-endpoint-containers) to build `odk/sync_endpoint`
-2. Follow instructions on https://github.com/opendatakit/sync-endpoint-web-ui to build `odk/sync-web-ui`
-3. Build `db-bootstrap` with `docker build -t odk/db-bootstrap db-bootstrap`
-4. Build `openldap` with `docker build -t odk/openldap openldap`
-5. Build `phpldapadmin` with `docker build -t odk/phpldapadmin phpldapadmin`
-
 ## Run
 
 1. `docker stack deploy -c docker-compose.yml syncldap` to deploy all services
-2. Navigate to `https://127.0.0.1:40000` and create a user, see the [LDAP](#ldap) section below for detail  
+2. `docker stack services syncldap` to check status of services.
+3.  wait until all replicas show `1/1` (except `syncldap_db-bootstrap`)
+4. Navigate to `https://127.0.0.1:40000` and create a user, see the [LDAP](#ldap) section below for detail  
    Note: Your browser might warn you about invalid certificate 
-3. The Sync Endpoint will take around 30s to start then it will be running at `http://127.0.0.1`
+5. The Sync Endpoint will take around 30s to start then it will be running at `http://127.0.0.1`
 
 If you don't want the database bootstrap script to run, set the `DB_BOOTSTRAP` environment variable in `db.env` to `false`.
+
+**Note** First run depends upon your net connectivity due to heavy download of images, after first run subsequent runs will be faster.
 
 ## Clean up
 
