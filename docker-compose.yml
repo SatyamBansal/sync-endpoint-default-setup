@@ -2,7 +2,7 @@ version: "3.3"
 
 services: 
   ldap-service:
-    image: odk/openldap
+    image: satyambansal/openldap
     deploy:
       replicas: 1
     networks: 
@@ -13,7 +13,7 @@ services:
     env_file:
       - ldap.env
   phpldapadmin:
-    image: odk/phpldapadmin
+    image: satyambansal/phpldapadmin
     deploy:
       replicas: 1
     ports:
@@ -33,7 +33,7 @@ services:
     env_file:
       - db.env
   db-bootstrap:
-    image: odk/db-bootstrap
+    image: satyambansal/db-bootstrap
     deploy:
       replicas: 1
       restart_policy:
@@ -52,7 +52,7 @@ services:
       - db.env
       - sync.env
   sync:
-    image: odk/sync_endpoint
+    image: satyambansal/sync_endpoint
     networks: 
       - ldap-network
       - db-network
@@ -67,7 +67,7 @@ services:
       - org.opendatakit.aggregate.security.properties
       - org.opendatakit.aggregate.jdbc.properties
   web-ui:
-    image: odk/sync-web-ui
+    image: satyambansal/sync-web-ui
     networks:
       - sync-network
     hostname: web-ui
