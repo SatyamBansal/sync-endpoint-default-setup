@@ -1,6 +1,6 @@
 ## Prerequisites
 
-Same as [sync-endpoint-containers](https://github.com/opendatakit/sync-endpoint-containers)
+Same as [sync-endpoint-containers-default-setup](https://github.com/jbeorse/sync-endpoint-default-setup)
 
 ## Run
 
